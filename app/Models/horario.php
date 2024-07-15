@@ -9,4 +9,12 @@ class horario extends Model
 {
     //use HasFactory;
     protected $table = "horario";
+    use HasFactory;
+
+    protected $fillable = ['descripcion', 'hora_inicio', 'hora_fin'];
+
+    public function empleados()
+    {
+        return $this->hasMany(Empleado::class);
+    }
 }

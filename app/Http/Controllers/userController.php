@@ -37,7 +37,8 @@ class UserController extends Controller
     {
         try {
             $usuarios = User::all();
-            return view('user.index', compact('usuarios')); // Specify the correct view name
+            $roles = roles::all();
+            return view('user.index', compact('usuarios', 'roles')); // Specify the correct view name
         } catch (Exception $e) {
             return $e->getMessage(); // Consider using a proper error handling mechanism
         }
