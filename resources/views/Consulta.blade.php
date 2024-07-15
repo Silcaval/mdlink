@@ -17,43 +17,48 @@
           <span class="text-gray-600">Haciendo las Consultas mas facil y seguras</span>
         </h1>
         <p class="w-1/2 mx-auto mt-4 text-base font-medium text-gray-500 text-balance">
-        Seccion para Consultar Registros de Entrada y Salida, Tambien puede descargar el resgistro consultado        </p>
-        
-        
+        Seccion para Consultar Registros de Entrada y Salida, Tambien puede descargar el resgistro consultado
+        </p>
       </div>
-      
 
-      <div class="p-8 bg-white shadow-lg rounded-lg w-full max-w-4xl">
+      <div class="p-8 bg-white shadow-lg rounded-lg w-full max-w-4xl mx-auto">
+        <p class="mb-4">Selecciona el rango de Fechas </p>
 
-        <div class="mb-4">
-          <label for="role" class="block text-sm font-medium text-gray-700">Dispositivo</label>
-          <select id="role" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            <option value="" disabled selected>Selecciona un Dispositivo</option>
-            <option value="moderator">Dispositivo1</option>
-            <option value="moderator">Dispositivo2</option>
-          </select>
+        <div class="flex space-x-4 mb-4">
+          <form id="punchForm" action="{{ route('punch.search')}}" method="GET" class="flex items-center space-x-2">
+            @csrf
+            <div class="flex items-center space-x-2">
+              <label for="from-date" class="block text-sm font-medium text-gray-700">De</label>
+              <input type="date" id="from-date" name="from_date" value="{{ $fromDate ?? '2024-01-05'}}" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div class="flex items-center space-x-2">
+              <label for="to-date" class="block text-sm font-medium text-gray-700">A</label>
+              <input type="date" id="to-date" name="to_date" value="{{ $toDate ?? '2024-01-31'}}" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <button type="button" onclick="submitForm('search')" class="inline-flex items-center justify-center h-12 gap-3 px-5 py-3 font-medium text-white duration-200 bg-gray-900 rounded-xl hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black mr-2">
+              Consultar
+            </button>
+          </form>
+
+          <form id="downloadForm" action="{{ route('punch.export') }}" method="GET" class="flex items-center space-x-2">
+            @csrf
+            @if (isset($fromDate) && isset($toDate))
+              <input type="hidden" name="from_date" value="{{ $fromDate }}">
+              <input type="hidden" name="to_date" value="{{ $toDate }}">
+            @endif
+            <button type="submit" class="inline-flex items-center justify-center h-12 gap-3 px-5 py-3 font-medium text-white duration-200 bg-gray-900 rounded-xl hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black mr-2">
+              Descargar
+            </button>
+          </form>
+
+          <form id="logoutForm" action="{{ route('user.logout')}}" method="POST" class="flex items-center space-x-2">
+            @csrf
+            <button type="submit" class="inline-flex items-center justify-center h-12 gap-3 px-5 py-3 font-medium duration-200 bg-gray-100 rounded-xl hover:bg-gray-200 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mr-2">
+              Salir
+            </button>
+          </form>
         </div>
-      
-        <div class="flex justify-between mb-4">
-          <div class="flex items-center space-x-2">
-            <label for="from-date" class="block text-sm font-medium text-gray-700">De</label>
-            <input type="date" id="from-date" name="from-date" value="2024-01-05" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-          </div>
-          <div class="flex items-center space-x-2">
-            <label for="to-date" class="block text-sm font-medium text-gray-700">A</label>
-            <input type="date" id="to-date" name="to-date" value="2024-01-31" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-          </div>
-          <button class="inline-flex items-center justify-center w-full h-12 gap-3 px-5 py-3 font-medium text-white duration-200 bg-gray-900 md:w-auto rounded-xl hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black" aria-label="Primary action">
-            Consultar
-          </button>
-          <button class="inline-flex items-center justify-center w-full h-12 gap-3 px-5 py-3 font-medium text-white duration-200 bg-gray-900 md:w-auto rounded-xl hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black" aria-label="Primary action">
-            Descargar
-          </button>
-          <button class="inline-flex items-center justify-center w-full h-12 gap-3 px-5 py-3 font-medium duration-200 bg-gray-100 md:w-auto rounded-xl hover:bg-gray-200 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-label="Secondary action">
-            Salir
-          </button>
-    
-        </div>
+
         <div class="text-center">
           <table class="min-w-full bg-white border border-gray-300">
             <thead>
@@ -66,26 +71,37 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="px-4 py-2 border-b border-gray-300">01</td>
-                <td class="px-4 py-2 border-b border-gray-300">Justo Perez</td>
-                <td class="px-4 py-2 border-b border-gray-300">15/01/2024 08:01:15</td>
-                <td class="px-4 py-2 border-b border-gray-300">Ingreso</td>
-                <td class="px-4 py-2 border-b border-gray-300">Adan Perez</td>
-              </tr>
+              @if (isset($punches) && count($punches)>0)
+                @foreach ($punches as $punch)
+                  <tr>
+                    <td class="px-4 py-2 border-b border-gray-300">{{ $punch->id}}</td>
+                    <td class="px-4 py-2 border-b border-gray-300">{{ $punch->emp_nombre}}</td>
+                    <td class="px-4 py-2 border-b border-gray-300">{{ $punch->fecha}} {{ $punch->hora}}</td>
+                    <td class="px-4 py-2 border-b border-gray-300">Ingreso</td>
+                    <td class="px-4 py-2 border-b border-gray-300">Adan Perez</td>
+                  </tr>
+                @endforeach
+              @else
+                <tr>
+                  <td colspan="5" class="px-4 py-2 border-b border-gray-300 text-center">No hay registros para mostrar</td>
+                </tr>
+              @endif
             </tbody>
           </table>
         </div>
-    
-        </div>
+      </div>
     </div>
-
-   
-    
   </section>
 
-
-  
-    
+  <script>
+    function submitForm(action){
+      const form = document.getElementById('punchForm');
+      if(action === 'search'){
+        form.action = '{{ route("punch.search")}}';
+        form.method = 'GET';
+      }
+      form.submit();
+    }
+  </script>
 </body>
 </html>

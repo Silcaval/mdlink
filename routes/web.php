@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\empleadoController;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\punchController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\exportController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/',[loginController::class,'index'])->name('home');
@@ -52,3 +54,44 @@ Route::post('/changepass',[userController::class,'passChange'])->name('users.cha
 
 //ruta para empleados
 Route::get('/empleados',[empleadoController::class,'emp'])->name('Empleados');
+
+//ruta buscar empleado por ID
+Route::get('/empleados/buscar/{id}',[empleadoController::class,'buscarPorId'])->name('Empleados.id');
+
+//ruta para guardar
+Route::get('/empleados/guardar',[empleadoController::class,'guardar'])->name('Empleados.guardar');
+
+//ruta para actualizazr
+Route::get('/empleados/actualizar/{id}',[empleadoController::class,'actualizar'])->name('Empleados.actualizar');
+
+//ruta para marcar como inactivo (eliminar)
+Route::get('/empleados/eliminar/{id}',[empleadoController::class,'eliminar'])->name('Empleados.eliminar');
+
+// ruta para mostrar dispositivos
+Route::get('/dispositivo',[DispositivoController::class,'index'])->name('dispositivo.index');
+
+//ruta para crear un dispositivo
+Route::post('/dispositivo/save',[DispositivoController::class,'store'])->name('dispositivo.save');
+
+// ruta para actualizar un departamento
+
+Route::put('/dispositivo/update/{id}',[DispositivoController::class,'update'])->name('dispositivo.update');
+
+// ruta para deshabilitar un departamento
+Route::put('/dispositivo/delete/{id}',[DispositivoController::class,'delete'])->name('dispositivo.delete');
+
+//Ruta para la consulta de punches
+Route::get('/punches',[punchController::class,'viewPunch'])->name('punch.view');
+
+//Ruta para el metodo de consulta
+Route::get('/punches/search',[punchController::class,'searchDate'])->name('punch.search');
+
+//Ruta para guardar archivo de excel
+Route::get('/punches/export',[exportController::class,'export'])->name('punch.export');
+
+// Visualizar vista de dispositivos
+Route::get('/dispositivo', [DispositivoController::class, 'index'])->name('dispositivo.view');
+// Guardado de dispositivos
+Route::post('/dispositivo/guardar', [DispositivoController::class, 'store'])->name('dispositivo.save');
+// Ruta para eliminar un dispositivo (actualizar estado a 0)
+Route::post('/dispositivo/eliminar/{id}', [DispositivoController::class, 'delete'])->name('dispositivo.delete');
