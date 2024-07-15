@@ -42,7 +42,7 @@ Route::get('/usuarios',[userController::class,'usersview'])->name('user.view');
 Route::post('/usuarios/save',[UserController::class,'store'])->name('users.save');
 
 //Ruta para actualizar el usuario
-Route::put('usuaios/update/{id}',[UserController::class,'update'])->name('users.update');
+Route::put('usuarios/update/{id}',[UserController::class,'update'])->name('users.update');
 
 //Ruta para inhabilitar usuario
 Route::put('usuarios/delete/{id}',[UserController::class,'delete'])->name('users.delete');
@@ -53,7 +53,7 @@ Route::get('/change',[userController::class,'change'])->name('users.change');
 Route::post('/changepass',[userController::class,'passChange'])->name('users.changepass');
 
 //ruta para empleados
-Route::get('/empleados',[empleadoController::class,'emp'])->name('Empleados');
+Route::get('/empleados',[empleadoController::class,'emp'])->name('Empleados.view');
 
 //ruta buscar empleado por ID
 Route::get('/empleados/buscar/{id}',[empleadoController::class,'buscarPorId'])->name('Empleados.id');
