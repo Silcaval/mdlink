@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\empleado;
+use App\Models\Horario;
 use Illuminate\Http\Request;
 
 class empleadoController extends Controller
@@ -10,6 +11,12 @@ class empleadoController extends Controller
        // Mostrar inicio empleados
     public function emp(){
         return view('Empleados');
+    }
+
+    public function create()
+    {
+        $horarios = Horario::all();
+        return view('Empleados.create', compact('horarios'));
     }
    
     public function buscarPorId($id){

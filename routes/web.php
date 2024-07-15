@@ -55,6 +55,9 @@ Route::post('/changepass',[userController::class,'passChange'])->name('users.cha
 //ruta para empleados
 Route::get('/empleados',[empleadoController::class,'emp'])->name('Empleados.view');
 
+// ruta para crear empleados
+Route::get('/empleados/create', [EmpleadoController::class, 'create']);
+
 //ruta buscar empleado por ID
 Route::get('/empleados/buscar/{id}',[empleadoController::class,'buscarPorId'])->name('Empleados.id');
 
