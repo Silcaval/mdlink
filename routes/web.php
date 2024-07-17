@@ -57,6 +57,15 @@ Route::post('/changepass',[userController::class,'passChange'])->name('users.cha
 Route::get('/empleados',[empleadoController::class,'emp'])->name('Empleados.view');
 
 // ruta para crear empleados / agregado por Silvia
+Route::get('/empleados', [EmpleadoController::class, 'emp'])->name('Empleados');
+Route::get('/empleados', [EmpleadoController::class, 'create'])->name('empleados.create');
+Route::post('/empleados', [EmpleadoController::class, 'guardar'])->name('empleados.store');
+Route::get('/empleados/{id}/edit', [EmpleadoController::class, 'edit'])->name('empleados.edit');
+Route::put('/empleados/{id}', [EmpleadoController::class, 'actualizar'])->name('empleados.update');
+Route::delete('/empleados/{id}', [EmpleadoController::class, 'eliminar'])->name('empleados.destroy');
+
+
+
 //Route::get('/empleados/create', [EmpleadoController::class, 'create']);
 
 //Route::get('/empleados', [HorarioController::class, 'index']);
@@ -67,6 +76,8 @@ Route::get('/empleados',[empleadoController::class,'emp'])->name('Empleados.view
 
 Route::get('/empleados2', [HorarioController::class, 'index']);
 */
+
+
 
 //ruta buscar empleado por ID
 Route::get('/empleados/buscar/{id}',[empleadoController::class,'buscarPorId'])->name('Empleados.id');
