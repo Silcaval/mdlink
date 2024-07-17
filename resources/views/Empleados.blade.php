@@ -58,10 +58,8 @@
         <div class="w-1/2">
           <label for="role" class="block text-sm font-medium text-gray-700">Horario</label>
       <select id="role" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-        <option value="" disabled selected>Selecciona la Hora de Entrada</option>
-            @foreach($horarios as $horario)
-              <option value="{{ $horario->hora_inicio }}">{{ $horario->hora_inicio }}</option>
-            @endforeach
+        <option value="" disabled selected>Asignación de horario</option>
+            
       </select>
  </div>
         <div class="w-1/2">
