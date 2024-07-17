@@ -6,6 +6,7 @@ use App\Http\Controllers\punchController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\exportController;
+use App\Http\Controllers\HorarioController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/',[loginController::class,'index'])->name('home');
@@ -57,6 +58,15 @@ Route::get('/empleados',[empleadoController::class,'emp'])->name('Empleados.view
 
 // ruta para crear empleados / agregado por Silvia
 Route::get('/empleados/create', [EmpleadoController::class, 'create']);
+
+//Route::get('/empleados', [HorarioController::class, 'index']);
+
+/*Route::get('/empleados2', function () {
+    return view('empleados');
+});
+
+Route::get('/empleados2', [HorarioController::class, 'index']);
+*/
 
 //ruta buscar empleado por ID
 Route::get('/empleados/buscar/{id}',[empleadoController::class,'buscarPorId'])->name('Empleados.id');
