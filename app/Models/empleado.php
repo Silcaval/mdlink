@@ -13,6 +13,6 @@ class empleado extends Model
 
 public function horario()
     {
-        return $this->belongsTo(Horario::class, 'emp_horario');
+        return $this->belongsTo(Horario::class, 'emp_horario', 'id');
     }
 

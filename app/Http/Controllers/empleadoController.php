@@ -17,7 +17,8 @@ class EmpleadoController extends Controller
 
     public function create()
     {
-        $horarios = Horario::all();
+        // Obtener los horarios donde el estado es 1
+        $horarios = Horario::where('estado', 1)->get();
         return view('empleados', compact('horarios'));
     }
 
