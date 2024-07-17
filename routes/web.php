@@ -57,7 +57,7 @@ Route::post('/changepass',[userController::class,'passChange'])->name('users.cha
 Route::get('/empleados',[empleadoController::class,'emp'])->name('Empleados.view');
 
 // ruta para crear empleados / agregado por Silvia
-Route::get('/empleados/create', [EmpleadoController::class, 'create']);
+//Route::get('/empleados/create', [EmpleadoController::class, 'create']);
 
 //Route::get('/empleados', [HorarioController::class, 'index']);
 

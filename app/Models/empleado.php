@@ -10,3 +10,9 @@ class empleado extends Model
     //use HasFactory;
     protected $table = "empleado";
 }
+
+public function horario()
+    {
+        return $this->belongsTo(Horario::class, 'emp_horario');
+    }
+

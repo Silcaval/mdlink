@@ -16,8 +16,17 @@ class empleadoController extends Controller
     public function create()
     {
         $horarios = Horario::all();
-        return view('empleados.create', compact('horarios'));
+        return view('empleados', compact('horarios'));
     }
+
+    public function edit($id)
+    {
+        $empleado = Empleado::findOrFail($id);
+        $horarios = Horario::all();
+        return view('empleados', compact('empleado', 'horarios'));
+    }
+
+
    
     public function buscarPorId($id){
     try {

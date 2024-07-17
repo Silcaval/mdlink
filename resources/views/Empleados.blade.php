@@ -60,7 +60,9 @@
           <select name= "emp_horario" id="emp_horario" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <option value="" disabled selected>Selecciona el horario</option>
             {{--@foreach($horarios as $horario)
-              <option value="{{ $horario->hor_inicio }}">{{ $horario->hor_inicio }}</option>
+              <option value="{{ $horario->id }}" {{ isset($empleado) && $empleado->emp_horario == $horario->id ? 'selected' : '' }}>
+                {{ $horario->hor_inicio }} - {{ $horario->hor_fin }}
+              </option>
             @endforeach--}}
           </select>
         </div>
