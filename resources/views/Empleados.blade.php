@@ -56,23 +56,24 @@
       </div>
       <div class="mb-4 flex space-x-4">
         <div class="w-1/2">
-          <label for="horario" class="block text-sm font-medium text-gray-700">Horario</label>
-      <select id="horario" name="horario_id" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-        <option value="" disabled selected>Asignación de horario</option>
-        @foreach($horarios as $horario)
-          <option value="{{ $horario->id }}">{{ $horario->name }}</option>
-        @endforeach
-      </select>
- </div>
+          <label for="emp_horario" class="block text-sm font-medium text-gray-700">Horario</label>
+          <select name= "emp_horario" id="emp_horario" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <option value="" disabled selected>Selecciona el horario</option>
+            {{--@foreach($horarios as $horario)
+              <option value="{{ $horario->hor_inicio }}">{{ $horario->hor_inicio }}</option>
+            @endforeach--}}
+          </select>
+        </div>
+        
         <div class="w-1/2">
           <label for="role" class="block text-sm font-medium text-gray-700">Estado</label>
-      <select id="role" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-        <option value="" disabled selected>Estado de Empleado</option>
-        <option value="admin">Activo</option>
-        <option value="moderator">Inactivo</option>
-       
-      </select>
+          <select id="role" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <option value="" disabled selected>Estado de Empleado</option>
+            <option value="admin">Activo</option>
+            <option value="moderator">Inactivo</option>
+          </select>
         </div>
+        
       </div>
 
       <div class="mb-4 flex space-x-4">
